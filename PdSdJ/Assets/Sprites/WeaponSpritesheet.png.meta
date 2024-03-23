@@ -146,6 +146,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: HandgunAmmo_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 950
+        width: 112
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5464207a6be53534a82a1a2d3bc2e6bb
+      internalID: 34972798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -157,6 +178,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      HandgunAmmo_0: 34972798
       Handgun_1: -113062706
       Spray_0: -6075167
   spritePackingTag: 
