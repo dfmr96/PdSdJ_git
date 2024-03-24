@@ -11,21 +11,10 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject firstSlot;
     [SerializeField] private InventorySlotViewer[] slots;
-    [SerializeField] private GameObject selector;
     [SerializeField] private List<Button> actionButtons;
 
     [SerializeField] private bool isCombinating = false;
-
-    private void OnEnable()
-    {
-        EventSystem.current.SetSelectedGameObject(firstSlot);
-    }
     
-    private void Update()
-    {
-        selector.transform.position = EventSystem.current.currentSelectedGameObject.transform.position;
-    }
-
     public void ActiveActions()
     {
         if (!isCombinating)

@@ -218,7 +218,7 @@ TextureImporter:
         width: 111
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -239,7 +239,7 @@ TextureImporter:
         width: 112
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -247,6 +247,48 @@ TextureImporter:
       bones: []
       spriteID: 4e326384927f25b43a193ed0b4eb53b9
       internalID: 366201657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedHerb
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 731
+        width: 112
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2774b2746442b0449de695cf3933e01
+      internalID: -335665469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: G+R Mix
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 731
+        width: 112
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07157057a05caba438ebea9cf38d73b3
+      internalID: -455641470
       vertices: []
       indices: 
       edges: []
@@ -264,10 +306,12 @@ TextureImporter:
     nameFileIdTable:
       EmptySlot: 931025338
       FirstAidSpray: -2081278898
+      G+R Mix: -455641470
       GreenGreenMix: 366201657
       GreenHerb: 1714979499
       Handgun: 1383114320
       HandgunAmmo: 1508203579
+      RedHerb: -335665469
       Selector: 487525003
   spritePackingTag: 
   pSDRemoveMatte: 0
