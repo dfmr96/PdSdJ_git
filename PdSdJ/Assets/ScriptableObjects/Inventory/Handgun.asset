@@ -19,3 +19,4 @@ MonoBehaviour:
   damage: 1
   reloadSpeed: 3
   fireRate: 3
+  compatibleAmmo: {fileID: 11400000, guid: ce4b53c01a4e40c4bbda4cd28a3e7b5c, type: 2}
