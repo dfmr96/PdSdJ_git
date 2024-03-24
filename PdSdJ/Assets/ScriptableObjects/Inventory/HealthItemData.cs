@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ItemData/HealthItemData", fileName = "New HealthItemData", order = 0)]
-public class HealthItemData : InventoryItemData , IHealer
+public class HealthItemData : InventoryItemData
 {
-    public int healAmount;
-
-    public int HealAmount => healAmount;
-
-    public void Heal()
+    public void Use()
     {
-        Debug.Log($"{HealAmount}HP healed");
+        usabilityData.Use();
     }
 }

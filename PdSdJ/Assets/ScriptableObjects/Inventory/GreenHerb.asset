@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06004c5624d7c5e489200b889ea64064, type: 3}
-  m_Name: Spray
+  m_Name: GreenHerb
   m_EditorClassIdentifier: 
-  name: First Aid Spray
-  description: A spray with powerful heal stats
-  sprite: {fileID: -2081278898, guid: 505ead0eb0368254e8e96c70d275752e, type: 3}
-  amount: 1
-  usabilityData: {fileID: 11400000, guid: 5f945df282d04b04c8bd7454708dd243, type: 2}
+  name: Green Herb
+  description: A medicinal herb
+  sprite: {fileID: 1714979499, guid: 505ead0eb0368254e8e96c70d275752e, type: 3}
+  amount: 0
+  usabilityData: {fileID: 11400000, guid: 1ade74b7564862741a5c3cb67fd4de4f, type: 2}
+  combinableInfo: {fileID: 11400000, guid: b73f9a29c53b1614a8059738ec279925, type: 2}

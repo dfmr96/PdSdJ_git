@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: HandgunAmmo
   description: Low caliber ammo for handguns
-  sprite: {fileID: 34972798, guid: bb7adf0d0be10a146ba6bd8d14e0e45f, type: 3}
+  sprite: {fileID: 1508203579, guid: 505ead0eb0368254e8e96c70d275752e, type: 3}
   amount: 30
   compatibleWeapon: {fileID: 11400000, guid: cefaaffc0004f274d821e75a9fe662e2, type: 2}

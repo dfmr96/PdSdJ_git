@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41e3f77e52ef8144ca4d631833a66f08, type: 3}
-  m_Name: New Inventory
+  m_Name: Inventory
   m_EditorClassIdentifier: 
   heldItems:
+  - amount: 1
+    inventoryItemData: {fileID: 11400000, guid: a57d24cf7e6cfa140ad0e010de931f27,
+      type: 2}
+  - amount: 0
+    inventoryItemData: {fileID: 11400000, guid: a57d24cf7e6cfa140ad0e010de931f27,
+      type: 2}
   - amount: 0
     inventoryItemData: {fileID: 0}
   - amount: 0
@@ -21,7 +27,9 @@ MonoBehaviour:
     inventoryItemData: {fileID: 0}
   - amount: 0
     inventoryItemData: {fileID: 0}
-  - amount: 0
-    inventoryItemData: {fileID: 0}
-  - amount: 0
-    inventoryItemData: {fileID: 0}
+  weaponEquipped: {fileID: 11400000, guid: cefaaffc0004f274d821e75a9fe662e2, type: 2}
+  selectedItem: {fileID: 11400000, guid: a57d24cf7e6cfa140ad0e010de931f27, type: 2}
+  combinationItemSelection: {fileID: 0}
+  combinationTable: {fileID: 11400000, guid: 8b69bb9e010226b4180b8e8fb3608ef4, type: 2}
+  itemToCombineA: {fileID: 0}
+  itemToCombineB: {fileID: 0}

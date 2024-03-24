@@ -1,12 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjects.Inventory;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 [CreateAssetMenu(menuName = "Inventory", fileName = "New Inventory")]
 public class Inventory : ScriptableObject
 {
     public List<InventoryItem> heldItems;
+    public WeaponItemData weaponEquipped;
+    public InventoryItemData selectedItem;
+    public InventoryItemData combinationItemSelection;
+    public CombinationTable combinationTable;
+    public InventoryItemData itemToCombineA;
+    public InventoryItemData itemToCombineB;
     
     public void AddItem(InventoryItemData itemData, int amount)
     {

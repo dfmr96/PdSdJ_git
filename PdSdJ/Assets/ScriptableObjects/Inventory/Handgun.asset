@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Handgun
   description: A low caliber weapon
-  sprite: {fileID: -113062706, guid: bb7adf0d0be10a146ba6bd8d14e0e45f, type: 3}
+  sprite: {fileID: 1383114320, guid: 505ead0eb0368254e8e96c70d275752e, type: 3}
   amount: 1
+  usabilityData: {fileID: 11400000, guid: 803b59daacf559c4ab8c52d01317d034, type: 2}
   damage: 1
   reloadSpeed: 3
   fireRate: 3
