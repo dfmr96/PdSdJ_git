@@ -30,7 +30,7 @@ public class Inventory : ScriptableObject
             }
         }
         Debug.Log($"No se encontró ningun {itemData.name}");
-        for (int i = 0; i < heldItems.Count; i++) 
+        for (int i = 0; i < heldItems.Count; i++)
         {
             if (heldItems[i].inventoryItemData == null)
             {
@@ -42,7 +42,6 @@ public class Inventory : ScriptableObject
                 return;
             }
         }
-        
     }
 [ContextMenu("Empty inventory")]
     public void EmptyInventory()
@@ -51,6 +50,39 @@ public class Inventory : ScriptableObject
         {
             heldItems[i] = new InventoryItem();
         }
+    }
+    public void CombineItems()
+    {
+        if (selectedItem.combinableInfo != null)
+        {
+            InventoryItemData newItem = selectedItem.combinableInfo.GetCombinationResult(
+                itemToCombineA,
+                itemToCombineB); 
+            Debug.Log($"{newItem.name} encontrado");
+            itemToCombineA = null;
+            itemToCombineB = null;
+            AddItem(newItem,1);
+        }
+    }
+    public void SetCombineItemA()
+    {
+        itemToCombineA = selectedItem;
+    }
+    public void SetCombineItemB()
+    {
+        itemToCombineB = selectedItem;
+    }
+    public void SetSelectedItem(InventoryItemData itemData)
+    {
+        selectedItem = itemData;
+    }
+    public void Use()
+    {
+        if (selectedItem.usabilityData != null) selectedItem.usabilityData.Use();
+    }
+    public InventoryItemData GetItem(int slot)
+    {
+        return heldItems[slot].inventoryItemData;
     }
 }
 

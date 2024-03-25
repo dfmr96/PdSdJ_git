@@ -158,7 +158,7 @@ PrefabInstance:
     - target: {fileID: 5565455321365794245, guid: 34cdb0bc3d34b5b49973af8454b5e392,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5565455321365794245, guid: 34cdb0bc3d34b5b49973af8454b5e392,
         type: 3}
@@ -480,7 +480,7 @@ PrefabInstance:
     - target: {fileID: 5565455321365794245, guid: 34cdb0bc3d34b5b49973af8454b5e392,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5565455321365794245, guid: 34cdb0bc3d34b5b49973af8454b5e392,
         type: 3}
@@ -1535,7 +1535,7 @@ PrefabInstance:
     - target: {fileID: 5565455321365794245, guid: 34cdb0bc3d34b5b49973af8454b5e392,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5565455321365794245, guid: 34cdb0bc3d34b5b49973af8454b5e392,
         type: 3}
@@ -1987,7 +1987,7 @@ PrefabInstance:
     - target: {fileID: 5565455321365794245, guid: 34cdb0bc3d34b5b49973af8454b5e392,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5565455321365794245, guid: 34cdb0bc3d34b5b49973af8454b5e392,
         type: 3}
@@ -2203,6 +2203,8 @@ MonoBehaviour:
   - {fileID: 7692829143612905408}
   - {fileID: 2019100107}
   - {fileID: 1884706296}
+  itemName: {fileID: 508143471}
+  itemDescription: {fileID: 1980310454}
   isCombinating: 0
 --- !u!4 &1458321734
 Transform:
@@ -2261,7 +2263,7 @@ PrefabInstance:
     - target: {fileID: 5565455321365794245, guid: 34cdb0bc3d34b5b49973af8454b5e392,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5565455321365794245, guid: 34cdb0bc3d34b5b49973af8454b5e392,
         type: 3}
@@ -3130,7 +3132,7 @@ PrefabInstance:
     - target: {fileID: 5565455321365794245, guid: 34cdb0bc3d34b5b49973af8454b5e392,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5565455321365794245, guid: 34cdb0bc3d34b5b49973af8454b5e392,
         type: 3}
