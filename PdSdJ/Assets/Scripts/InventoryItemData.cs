@@ -11,6 +11,7 @@ public abstract class InventoryItemData : ScriptableObject , ICheckable
     public int amount;
     public UsabilityData usabilityData;
     public CombinableInfo combinableInfo;
+    
 
     public void Check()
     {

@@ -19,6 +19,13 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] private bool isCombinating = false;
 
+    [SerializeField] private GameObject inventoryPanel;
+
+    public void ToggleInventory()
+    {
+        inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+    }
+
     public void OnItemSelected(InventoryItemData inventoryItemData)
     {
         if (inventoryItemData == null)

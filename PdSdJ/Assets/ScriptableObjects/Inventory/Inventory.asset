@@ -25,13 +25,12 @@ MonoBehaviour:
   - amount: 1
     inventoryItemData: {fileID: 11400000, guid: cefaaffc0004f274d821e75a9fe662e2,
       type: 2}
-  - amount: 30
-    inventoryItemData: {fileID: 11400000, guid: ce4b53c01a4e40c4bbda4cd28a3e7b5c,
-      type: 2}
+  - amount: 0
+    inventoryItemData: {fileID: 0}
   - amount: 0
     inventoryItemData: {fileID: 0}
   weaponEquipped: {fileID: 11400000, guid: cefaaffc0004f274d821e75a9fe662e2, type: 2}
-  selectedItem: {fileID: 11400000, guid: a57d24cf7e6cfa140ad0e010de931f27, type: 2}
+  selectedItem: {fileID: 11400000, guid: 0994ea6cafbe25e4daf3db686b666079, type: 2}
   combinationItemSelection: {fileID: 0}
   combinationTable: {fileID: 11400000, guid: 8b69bb9e010226b4180b8e8fb3608ef4, type: 2}
   itemToCombineA: {fileID: 0}

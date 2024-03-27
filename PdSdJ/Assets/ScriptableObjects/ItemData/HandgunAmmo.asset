@@ -16,4 +16,6 @@ MonoBehaviour:
   description: Low caliber ammo for handguns
   sprite: {fileID: 1508203579, guid: 505ead0eb0368254e8e96c70d275752e, type: 3}
   amount: 30
+  usabilityData: {fileID: 0}
+  combinableInfo: {fileID: 0}
   compatibleWeapon: {fileID: 11400000, guid: cefaaffc0004f274d821e75a9fe662e2, type: 2}
