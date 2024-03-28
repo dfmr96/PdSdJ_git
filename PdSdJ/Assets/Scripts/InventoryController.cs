@@ -20,14 +20,23 @@ public class InventoryController : MonoBehaviour
     [SerializeField] private bool isCombinating = false;
 
     [SerializeField] private GameObject inventoryPanel;
+    [SerializeField] private SelectorView selector;
+
+    private void OnEnable()
+    {
+        SelectFirstSlot();
+    }
 
     public void ToggleInventory()
     {
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+        
+        if (inventoryPanel.activeSelf) selector.SetSelectedGameObject(firstSlot);
     }
 
     public void OnItemSelected(InventoryItemData inventoryItemData)
     {
+        inventory.SetSelectedItem(inventoryItemData);
         if (inventoryItemData == null)
         {
             ClearItemNameAndDescription();
@@ -50,14 +59,13 @@ public class InventoryController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Item B a combinar seleccionado");
+            Debug.Log($"Item B {inventory.itemToCombineB} a combinar seleccionado");
             inventory.SetCombineItemB();
             OnCombineItem();
         }
     }
     public void SetSelectedItem(InventoryItemData itemData)
     {
-        inventory.SetSelectedItem(itemData);
         Debug.Log($"{inventory.selectedItem.name} seleccionado");
 
         OnSlotSubmit();
@@ -85,6 +93,7 @@ public class InventoryController : MonoBehaviour
     private void Awake()
     {
         InitSlotReferences();
+        inventoryPanel.SetActive(false);
         actionPanel.SetActive(false);
     }
     private void OnCombineItem()
@@ -109,11 +118,12 @@ public class InventoryController : MonoBehaviour
     }
     private void SelectFirstSlot()
     {
-        EventSystem.current.SetSelectedGameObject(firstSlot);
+        //inventory.SetSelectedItem(slots[0].GetInventoryItem().inventoryItemData);
+        selector.SetSelectedGameObject(firstSlot);
     }
     private void SelectFirstAction()
     {
-        EventSystem.current.SetSelectedGameObject(actionButtons[0].gameObject);
+        selector.SetSelectedGameObject(actionButtons[0].gameObject);
     }
     private void SetItemNameAndDescription(InventoryItemData inventoryItemData)
     {

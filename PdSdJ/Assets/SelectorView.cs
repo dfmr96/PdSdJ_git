@@ -10,7 +10,7 @@ public class SelectorView : MonoBehaviour
 {
     [SerializeField] private float speed;
     private RectTransform rectTransform;
-    private GameObject selected;
+    [SerializeField] GameObject selected;
 
     private void Awake()
     {
@@ -19,10 +19,15 @@ public class SelectorView : MonoBehaviour
 
     private void Update()
     {
-        GameObject selectedGameObject = EventSystem.current.currentSelectedGameObject;
+        
+        
+        /*GameObject selectedGameObject = EventSystem.current.currentSelectedGameObject;
         
         selected = (selectedGameObject == null) ? selected : selectedGameObject;
-
+        */
+        
+        selected = EventSystem.current.currentSelectedGameObject;
+        
         if (selected == null) return;
         
         //transform.position = selected.transform.position;
@@ -35,5 +40,11 @@ public class SelectorView : MonoBehaviour
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, horizontalLerp);
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, verticalLerp);
         
+    }
+
+    public void SetSelectedGameObject(GameObject gameObject)
+    {
+        selected = gameObject;
+        EventSystem.current.SetSelectedGameObject(selected);
     }
 }
