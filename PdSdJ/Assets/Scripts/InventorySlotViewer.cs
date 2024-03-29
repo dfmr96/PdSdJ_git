@@ -24,7 +24,12 @@ public class InventorySlotViewer : MonoBehaviour , ISelectHandler, ISubmitHandle
     [ContextMenu("RefreshData")]
     public void RefreshData()
     {
-        if (GetInventoryItem().inventoryItemData == null) return;
+        if (GetInventoryItem().inventoryItemData == null)
+        {
+            image.sprite = null;
+            amount.SetText(string.Empty);
+            return;
+        };
         
         InventoryItem slotItem = GetInventoryItem();
         

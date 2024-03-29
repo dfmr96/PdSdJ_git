@@ -10,6 +10,7 @@ namespace ScriptableObjects.Inventory
         public InventoryItemData PickUp(InventoryController inventoryController)
         {
             inventoryController.ToggleInventory();
+            
             return inventoryItemData;
         }
     }

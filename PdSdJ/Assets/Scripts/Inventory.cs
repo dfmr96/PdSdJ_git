@@ -9,11 +9,11 @@ public class Inventory : ScriptableObject
 {
     public List<InventoryItem> heldItems;
     public WeaponItemData weaponEquipped;
-    public InventoryItemData selectedItem;
+    public InventoryItem selectedItem;
     public InventoryItemData combinationItemSelection;
     public CombinationTable combinationTable;
-    public InventoryItemData itemToCombineA;
-    public InventoryItemData itemToCombineB;
+    public InventoryItem itemToCombineA;
+    public InventoryItem itemToCombineB;
     
     public void AddItem(InventoryItemData itemData, int amount)
     {
@@ -37,11 +37,22 @@ public class Inventory : ScriptableObject
                 InventoryItem tempItem;
                 tempItem.amount = amount;
                 tempItem.inventoryItemData = itemData;
+                tempItem.slot = i;
                 heldItems[i] = tempItem;
                 Debug.Log($"Se ha creado {itemData.name}, con {itemData.amount} unidades");
                 return;
             }
         }
+    }
+
+    public void DeleteItem(InventoryItem inventoryItem)
+    {
+        InventoryItem tempInventoryItem = heldItems[inventoryItem.slot];
+        tempInventoryItem.inventoryItemData = null;
+        tempInventoryItem.amount = 0;
+        tempInventoryItem.slot = inventoryItem.slot;
+        heldItems[inventoryItem.slot] = tempInventoryItem;
+
     }
 [ContextMenu("Empty inventory")]
     public void EmptyInventory()
@@ -53,15 +64,51 @@ public class Inventory : ScriptableObject
     }
     public void CombineItems()
     {
-        if (selectedItem.combinableInfo != null)
+        if (selectedItem.inventoryItemData.combinableInfo != null)
         {
-            InventoryItemData newItem = selectedItem.combinableInfo.GetCombinationResult(
-                itemToCombineA,
-                itemToCombineB); 
+            InventoryItemData newItem = selectedItem.inventoryItemData.combinableInfo.GetCombinationResult(
+                itemToCombineA.inventoryItemData,
+                itemToCombineB.inventoryItemData); 
             Debug.Log($"{newItem.name} encontrado");
-            itemToCombineA = null;
-            itemToCombineB = null;
+            if (itemToCombineA.amount < 2)
+            {
+                DeleteItem(itemToCombineA);
+                Debug.Log("ItemToCombineA borrado");
+            }
+            else
+            {
+                InventoryItem tempItem = new InventoryItem();
+                {
+                    tempItem.inventoryItemData = itemToCombineA.inventoryItemData;
+                    tempItem.amount = itemToCombineA.amount--;
+                    tempItem.slot = itemToCombineA.slot;
+                }
+                Debug.Log($"ItemToCombineA amount {tempItem.amount}");
+                tempItem.amount = itemToCombineA.amount--;
+                heldItems[itemToCombineA.slot] = tempItem;
+                Debug.Log($"ItemToCombineA amount {tempItem.amount}");
+            }
+
+            if (itemToCombineB.amount < 2)
+            {
+                DeleteItem(itemToCombineB);
+            }
+            else
+            {
+                InventoryItem tempItem = new InventoryItem();
+                {
+                    tempItem.inventoryItemData = itemToCombineB.inventoryItemData;
+                    tempItem.amount = itemToCombineB.amount--;
+                    tempItem.slot = itemToCombineB.slot;
+                }
+                Debug.Log($"ItemToCombineB amount {tempItem.amount}");
+                tempItem.amount = itemToCombineB.amount--;
+                heldItems[itemToCombineB.slot] = tempItem;
+                Debug.Log($"ItemToCombineB amount {tempItem.amount}");
+            }
             AddItem(newItem,1);
+            itemToCombineA = default;
+            itemToCombineB = default;
         }
     }
     public void SetCombineItemA()
@@ -72,23 +119,24 @@ public class Inventory : ScriptableObject
     {
         itemToCombineB = selectedItem;
     }
-    public void SetSelectedItem(InventoryItemData itemData)
+    public void SetSelectedItem(InventoryItem inventoryItem)
     {
-        selectedItem = itemData;
+        selectedItem = inventoryItem;
     }
     public void Use()
     {
-        if (selectedItem.usabilityData != null) selectedItem.usabilityData.Use();
+        if (selectedItem.inventoryItemData.usabilityData != null) selectedItem.inventoryItemData.usabilityData.Use();
     }
-    public InventoryItemData GetItem(int slot)
+    public InventoryItem GetItem(int slot)
     {
-        return heldItems[slot].inventoryItemData;
+        return heldItems[slot];
     }
 }
 
 [Serializable]
 public struct InventoryItem
 {
+    public int slot;
     public int amount;
     public InventoryItemData inventoryItemData;
 }

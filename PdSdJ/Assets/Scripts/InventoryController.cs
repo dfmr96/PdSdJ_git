@@ -30,20 +30,22 @@ public class InventoryController : MonoBehaviour
     public void ToggleInventory()
     {
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);
-        
+
         if (inventoryPanel.activeSelf) selector.SetSelectedGameObject(firstSlot);
     }
 
-    public void OnItemSelected(InventoryItemData inventoryItemData)
+    public void OnItemSelected(InventoryItem inventoryItem)
     {
-        inventory.SetSelectedItem(inventoryItemData);
-        if (inventoryItemData == null)
+        inventory.SetSelectedItem(inventoryItem);
+        if (inventoryItem.inventoryItemData == null)
         {
             ClearItemNameAndDescription();
             return;
         }
-        SetItemNameAndDescription(inventoryItemData);
+
+        SetItemNameAndDescription(inventoryItem.inventoryItemData);
     }
+
     private void InitSlotReferences()
     {
         foreach (InventorySlotViewer slot in slots)
@@ -51,6 +53,7 @@ public class InventoryController : MonoBehaviour
             slot.SetInventoryController(this);
         }
     }
+
     private void OnSlotSubmit()
     {
         if (!isCombinating)
@@ -64,17 +67,20 @@ public class InventoryController : MonoBehaviour
             OnCombineItem();
         }
     }
-    public void SetSelectedItem(InventoryItemData itemData)
+
+    public void SetSelectedItem(InventoryItem item)
     {
-        Debug.Log($"{inventory.selectedItem.name} seleccionado");
+        Debug.Log($"{inventory.selectedItem.inventoryItemData.name} seleccionado");
 
         OnSlotSubmit();
     }
+
     public void UseItem()
     {
         inventory.Use();
         ToggleActionPanel(false);
     }
+
     public void CombineAction()
     {
         isCombinating = true;
@@ -83,6 +89,7 @@ public class InventoryController : MonoBehaviour
         Debug.Log("Item A a combinar seleccionado");
         SelectFirstSlot();
     }
+
     public void RefreshSlots()
     {
         for (int i = 0; i < slots.Length; i++)
@@ -90,12 +97,14 @@ public class InventoryController : MonoBehaviour
             slots[i].RefreshData();
         }
     }
+
     private void Awake()
     {
         InitSlotReferences();
         inventoryPanel.SetActive(false);
         actionPanel.SetActive(false);
     }
+
     private void OnCombineItem()
     {
         inventory.CombineItems();
@@ -103,6 +112,7 @@ public class InventoryController : MonoBehaviour
         SelectFirstSlot();
         RefreshSlots();
     }
+
     private void ToggleActionPanel(bool value)
     {
         actionPanel.SetActive(value);
@@ -118,7 +128,6 @@ public class InventoryController : MonoBehaviour
     }
     private void SelectFirstSlot()
     {
-        //inventory.SetSelectedItem(slots[0].GetInventoryItem().inventoryItemData);
         selector.SetSelectedGameObject(firstSlot);
     }
     private void SelectFirstAction()
