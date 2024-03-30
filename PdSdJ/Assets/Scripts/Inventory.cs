@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ScriptableObjects.Inventory;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
@@ -52,7 +53,7 @@ public class Inventory : ScriptableObject
         tempInventoryItem.amount = 0;
         tempInventoryItem.slot = inventoryItem.slot;
         heldItems[inventoryItem.slot] = tempInventoryItem;
-
+        //Reorder();
     }
 [ContextMenu("Empty inventory")]
     public void EmptyInventory()
@@ -109,6 +110,7 @@ public class Inventory : ScriptableObject
             AddItem(newItem,1);
             itemToCombineA = default;
             itemToCombineB = default;
+            Reorder();
         }
     }
     public void SetCombineItemA()
@@ -125,7 +127,39 @@ public class Inventory : ScriptableObject
     }
     public void Use()
     {
-        if (selectedItem.inventoryItemData.usabilityData != null) selectedItem.inventoryItemData.usabilityData.Use();
+        if (selectedItem.inventoryItemData.usabilityData != null)
+        {
+            selectedItem.inventoryItemData.usabilityData.Use();
+            InventoryItem tempItem = heldItems[selectedItem.slot];
+            tempItem.amount--;
+            heldItems[selectedItem.slot] = tempItem;
+            
+            if (heldItems[selectedItem.slot].inventoryItemData.amount <= 1) DeleteItem(heldItems[selectedItem.slot]);
+        }
+    }
+
+    [ContextMenu("ReOrder")]
+    public void Reorder()
+    {
+        for (int i = 0; i < heldItems.Count; i++)
+        {
+            if (heldItems[i].inventoryItemData == null)
+            {
+                InventoryItem availableItem = new InventoryItem();
+                for (int j = i + 1; j < heldItems.Count; j++)
+                {
+                    if (heldItems[j].inventoryItemData != null)
+                    {
+                        availableItem = heldItems[j];
+                        DeleteItem(heldItems[j]);
+                        break;
+                    }
+                }
+
+                availableItem.slot = heldItems[i].slot;
+                heldItems[i] = availableItem;
+            }
+        }
     }
     public InventoryItem GetItem(int slot)
     {

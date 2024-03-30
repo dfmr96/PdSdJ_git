@@ -31,7 +31,12 @@ public class InventoryController : MonoBehaviour
     {
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);
 
-        if (inventoryPanel.activeSelf) selector.SetSelectedGameObject(firstSlot);
+        if (inventoryPanel.activeSelf)
+        {
+            inventory.Reorder();
+            RefreshSlots();
+            selector.SetSelectedGameObject(firstSlot);
+        }
     }
 
     public void OnItemSelected(InventoryItem inventoryItem)
@@ -79,6 +84,8 @@ public class InventoryController : MonoBehaviour
     {
         inventory.Use();
         ToggleActionPanel(false);
+        inventory.Reorder();
+        RefreshSlots();
     }
 
     public void CombineAction()

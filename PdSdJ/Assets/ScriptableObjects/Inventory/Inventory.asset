@@ -30,7 +30,7 @@ MonoBehaviour:
     inventoryItemData: {fileID: 11400000, guid: 79382bd19263c4a4eb9fd72f5078a968,
       type: 2}
   - slot: 4
-    amount: 25
+    amount: 36
     inventoryItemData: {fileID: 11400000, guid: 8227314c08fad254e87cba9e7655c9bc,
       type: 2}
   - slot: 5
