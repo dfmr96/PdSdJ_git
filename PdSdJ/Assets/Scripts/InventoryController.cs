@@ -30,13 +30,17 @@ public class InventoryController : MonoBehaviour
     public void ToggleInventory()
     {
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);
-
         if (inventoryPanel.activeSelf)
         {
+            Time.timeScale = 0;
+            Debug.Log($"{Time.timeScale}");
             inventory.Reorder();
             RefreshSlots();
             selector.SetSelectedGameObject(firstSlot);
+            return;
         }
+        Time.timeScale = 1;
+        Debug.Log($"{Time.timeScale}");
     }
 
     public void OnItemSelected(InventoryItem inventoryItem)

@@ -31,11 +31,11 @@ public class SelectorView : MonoBehaviour
         if (selected == null) return;
         
         //transform.position = selected.transform.position;
-        transform.position = Vector3.Lerp(transform.position, selected.transform.position, speed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, selected.transform.position, speed * Time.unscaledDeltaTime);
 
         RectTransform otherRect = selected.GetComponent<RectTransform>();
-        float horizontalLerp = Mathf.Lerp(rectTransform.rect.size.x, otherRect.rect.size.x, speed * Time.deltaTime);
-        float verticalLerp = Mathf.Lerp(rectTransform.rect.size.y, otherRect.rect.size.y, speed * Time.deltaTime);
+        float horizontalLerp = Mathf.Lerp(rectTransform.rect.size.x, otherRect.rect.size.x, speed * Time.unscaledDeltaTime);
+        float verticalLerp = Mathf.Lerp(rectTransform.rect.size.y, otherRect.rect.size.y, speed * Time.unscaledDeltaTime);
         
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, horizontalLerp);
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, verticalLerp);
