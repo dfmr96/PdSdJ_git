@@ -1,7 +1,4 @@
-namespace ScriptableObjects.Inventory
+public interface IPickeable
 {
-    public interface IPickeable
-    {
-        InventoryItemData PickUp(InventoryController inventoryController);
-    }
+    InventoryItemData PickUp(InventoryController inventoryController);
 }

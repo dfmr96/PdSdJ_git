@@ -1,7 +1,4 @@
-namespace ScriptableObjects.Inventory
+public interface IInteractuable
 {
-    public interface IInteractuable
-    {
-        void Interact();
-    }
+    void Interact();
 }

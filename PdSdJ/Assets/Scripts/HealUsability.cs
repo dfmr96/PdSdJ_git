@@ -1,14 +1,11 @@
 using UnityEngine;
 
-namespace ScriptableObjects.Inventory
+[CreateAssetMenu(menuName = "UsabilityData/HealthUsability", fileName = "New HealthUsability", order = 0)]
+public class HealUsability : UsabilityData
 {
-    [CreateAssetMenu(menuName = "UsabilityData/HealthUsability", fileName = "New HealthUsability", order = 0)]
-    public class HealUsability : UsabilityData
+    public int healAmount;
+    public override void Use()
     {
-        public int healAmount;
-        public override void Use()
-        {
-            Debug.Log($"{healAmount}HP curado");
-        }
+        Debug.Log($"{healAmount}HP curado");
     }
 }

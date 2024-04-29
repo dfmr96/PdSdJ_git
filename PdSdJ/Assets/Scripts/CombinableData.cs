@@ -1,7 +1,4 @@
-namespace ScriptableObjects.Inventory
+public class CombinableData
 {
-    public class CombinableData
-    {
         
-    }
 }

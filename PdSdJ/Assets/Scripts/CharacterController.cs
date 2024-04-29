@@ -1,7 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using ScriptableObjects.Inventory;
+using ScriptableObjects.Player;
+using State.Player;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,19 +21,16 @@ public enum PlayerStates
 }
 public class CharacterController : MonoBehaviour
 {
-    [Header("Movement")]
-    [SerializeField] private int walkingSpeed;
-    [SerializeField] private int runSpeed;
-    [SerializeField] private int pushingSpeed;
-    [SerializeField] private int angularSpeed;
+    [field: SerializeField] public int CurrentSpeed { get; private set; }
+    [field: SerializeField] public NavMeshAgent Agent { get; private set; }
+    [field: SerializeField] public PlayerData PlayerStats { get; private set; }
+
     [SerializeField] private Rigidbody rb;
     [SerializeField] private bool isPushing = false;
     [SerializeField] private CapsuleCollider aimRange;
     [SerializeField] private EnemiesDetector enemiesDetector;
     [SerializeField] private AutoAim autoAim;
     
-    [field: SerializeField] public int currentSpeed { get; private set; }
-    [field: SerializeField] public NavMeshAgent agent { get; private set; }
 
     [Header("Interaction")]
     [SerializeField] private LayerMask interactuableObjects;
@@ -41,12 +39,14 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] private PlayerStates state;
 
+    [SerializeField] private PlayerStateMachine playerStateMachine;
+
     private void Start()
     {
-        currentSpeed = walkingSpeed;
-        agent = GetComponent<NavMeshAgent>();
+        Agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         state = PlayerStates.Idle;
+        playerStateMachine = new PlayerStateMachine(this);
     }
 
     public void PushObject(bool canPush)
@@ -54,18 +54,19 @@ public class CharacterController : MonoBehaviour
         if (canPush)
         {
             isPushing = true;
-            currentSpeed = pushingSpeed;
+            //CurrentSpeed = pushingSpeed;
         }
         else
         {
-            currentSpeed = walkingSpeed;
+            //CurrentSpeed = walkingSpeed;
             isPushing = false;
         }
     }
 
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        playerStateMachine.Update();
+        /*float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
         if (horizontal == 0 && vertical == 0) state = PlayerStates.Idle;
@@ -108,7 +109,7 @@ public class CharacterController : MonoBehaviour
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
-        }
+        }*/
     }
 
     public void Aim()
@@ -141,23 +142,6 @@ public class CharacterController : MonoBehaviour
             Debug.Log($"{closestEnemy} took 1 damage at {distance}m");
             closestEnemy.TakeDamage(1);
         }
-    }
-
-    private void Move(float hor, float ver)
-    {
-
-        agent.Move(transform.forward * (ver * currentSpeed * Time.deltaTime));
-        transform.Rotate(Vector3.up * (hor * angularSpeed * Time.deltaTime));
-        
-        //transform.Translate(Vector3.forward * (vertical * currentSpeed * Time.deltaTime));
-        //rb.MovePosition(transform.forward * (vertical * currentSpeed * Time.fixedDeltaTime));
-        //rb.MoveRotation(Quaternion.Euler(0,0,horizontal * angularSpeed * Time.fixedDeltaTime));
-        //agent.
-    }
-
-    private void FixedUpdate()
-    {
-        //Move();
     }
 
     private void Interact()

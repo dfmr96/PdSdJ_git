@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using ScriptableObjects.Inventory;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -54,7 +53,7 @@ public class Pusheable : MonoBehaviour, IInteractuable
         }
         CharacterController playerController = agent.GetComponent<CharacterController>();
         playerController.PushObject(true);
-        speed = playerController.currentSpeed;
+        speed = playerController.CurrentSpeed;
         this.direction = direction;
         //speed = 0;
         //direction = new Vector3(MathF.Round(direction.x), MathF.Round(direction.y), MathF.Round(direction.z));

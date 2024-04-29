@@ -820,6 +820,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1819695867978160583, guid: 4327ad371f952fa4e8abfc387b938dbe,
+        type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1437744e9d5788a4795cd00af45e7a76,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4327ad371f952fa4e8abfc387b938dbe, type: 3}
 --- !u!1001 &1816393657
@@ -889,6 +895,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1819695867978160583, guid: 4327ad371f952fa4e8abfc387b938dbe,
+        type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1437744e9d5788a4795cd00af45e7a76,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4327ad371f952fa4e8abfc387b938dbe, type: 3}
 --- !u!1001 &1819695867525658626
@@ -958,6 +970,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1819695867978160583, guid: 4327ad371f952fa4e8abfc387b938dbe,
+        type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1437744e9d5788a4795cd00af45e7a76,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4327ad371f952fa4e8abfc387b938dbe, type: 3}
 --- !u!1001 &3163907043250717215
@@ -1564,6 +1582,17 @@ PrefabInstance:
       propertyPath: inventoryController
       value: 
       objectReference: {fileID: 1399841051}
+    - target: {fileID: 8243476681555465639, guid: 3ab05995bad6cfd44becf52615976dd7,
+        type: 3}
+      propertyPath: <PlayerStats>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 979da8edac45b2c4cb89c588f85a96fe,
+        type: 2}
+    - target: {fileID: 8243476681555465639, guid: 3ab05995bad6cfd44becf52615976dd7,
+        type: 3}
+      propertyPath: playerStateMachine.stateString
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8243476681555465640, guid: 3ab05995bad6cfd44becf52615976dd7,
         type: 3}
       propertyPath: m_Name
