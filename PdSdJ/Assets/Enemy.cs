@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private NavMeshAgent playerAgent;
     [SerializeField] private float health;
+
+    public event Action<Enemy> OnEnemyKilled;
     private void Start()
     {
         agroCol.radius = agroRadius;
@@ -57,6 +59,7 @@ public class Enemy : MonoBehaviour
 
     public void ChasePlayer(NavMeshAgent agent)
     {
+        if (agent.TryGetComponent(out CharacterController character) == false) return;
         playerAgent = agent;
         if (playerAgent == null)
         {
@@ -72,7 +75,11 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
-        
-        if(health <= 0) Destroy(gameObject);
+
+        if (health <= 0)
+        {
+            OnEnemyKilled?.Invoke(this);
+            Destroy(gameObject);
+        }
     }
 }

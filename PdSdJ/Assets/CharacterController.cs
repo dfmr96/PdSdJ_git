@@ -70,9 +70,15 @@ public class CharacterController : MonoBehaviour
 
         if (horizontal == 0 && vertical == 0) state = PlayerStates.Idle;
         else state = PlayerStates.Walking;
-        
-        if (Input.GetKeyDown(KeyCode.X)) //TODO
-        if (Input.GetKey(KeyCode.X)) state = PlayerStates.Aiming;
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Aim();
+        } ; //TODO
+        if (Input.GetKey(KeyCode.X))
+        {
+            state = PlayerStates.Aiming;
+        }
         
         if (Input.GetKeyDown(KeyCode.F)) Interact();
         
@@ -107,7 +113,12 @@ public class CharacterController : MonoBehaviour
 
     public void Aim()
     {
-        
+        Enemy closestEnemy = autoAim.TryGetClosestEnemy();
+
+        if (closestEnemy != null)
+        {
+            transform.LookAt(closestEnemy.transform);
+        }
     }
 
     private void Shoot()

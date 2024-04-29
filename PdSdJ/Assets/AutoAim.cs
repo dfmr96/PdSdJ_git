@@ -23,12 +23,7 @@ public class AutoAim : MonoBehaviour
             }
         }
 
-        if (closestEnemy != null)
-        {
-            Debug.Log($"{closestEnemy} took 1 damage at {distance}m");
-            closestEnemy.TakeDamage(1);
-        }
-
+        if (closestEnemy != null) return closestEnemy;
         return null;
     }
 }

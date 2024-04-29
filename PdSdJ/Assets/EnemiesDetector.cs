@@ -14,6 +14,7 @@ public class EnemiesDetector : MonoBehaviour
         {
             if (!enemiesInRange.Contains(enemy))
             {
+                enemy.OnEnemyKilled += RemoveEnemyKilled;
                 enemiesInRange.Add(enemy);
             }
         }
@@ -25,8 +26,14 @@ public class EnemiesDetector : MonoBehaviour
         {
             if (enemiesInRange.Contains(enemy))
             {
+                enemy.OnEnemyKilled -= RemoveEnemyKilled;
                 enemiesInRange.Remove(enemy);
             }
         }
+    }
+
+    private void RemoveEnemyKilled(Enemy enemyKilled)
+    {
+        enemiesInRange.Remove(enemyKilled);
     }
 }
