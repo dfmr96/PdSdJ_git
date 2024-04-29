@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjects.Enemies;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,6 +15,7 @@ public enum EnemyStates
 }
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private EnemyData enemyData;
     [SerializeField] private PlayerDetector agro;
     [SerializeField] private float agroRadius;
     [SerializeField] private SphereCollider agroCol;
@@ -24,8 +26,22 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private NavMeshAgent playerAgent;
     [SerializeField] private float health;
-
+    [SerializeField] private float damage;
+    
     public event Action<Enemy> OnEnemyKilled;
+
+    private void InitializeData()
+    {
+        health = enemyData.Health;
+        speed = enemyData.Speed;
+        damage = enemyData.Damage;
+    }
+
+    private void Awake()
+    {
+        InitializeData();
+    }
+
     private void Start()
     {
         agroCol.radius = agroRadius;
