@@ -17,7 +17,8 @@ MonoBehaviour:
   sprite: {fileID: 1383114320, guid: 505ead0eb0368254e8e96c70d275752e, type: 3}
   amount: 1
   usabilityData: {fileID: 11400000, guid: 803b59daacf559c4ab8c52d01317d034, type: 2}
-  damage: 1
+  combinableInfo: {fileID: 0}
+  damage: 25
   reloadSpeed: 3
   fireRate: 3
   compatibleAmmo: {fileID: 11400000, guid: ce4b53c01a4e40c4bbda4cd28a3e7b5c, type: 2}

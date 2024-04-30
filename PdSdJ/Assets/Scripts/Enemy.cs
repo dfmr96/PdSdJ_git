@@ -25,14 +25,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed;
 
     [SerializeField] private NavMeshAgent playerAgent;
-    [SerializeField] private float health;
     [SerializeField] private float damage;
+    [field: SerializeField] public float Health { get; private set; }
     
     public event Action<Enemy> OnEnemyKilled;
 
     private void InitializeData()
     {
-        health = enemyData.Health;
+        Health = enemyData.Health;
         speed = enemyData.Speed;
         damage = enemyData.Damage;
     }
@@ -90,9 +90,9 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        Health -= damage;
 
-        if (health <= 0)
+        if (Health <= 0)
         {
             OnEnemyKilled?.Invoke(this);
             Destroy(gameObject);

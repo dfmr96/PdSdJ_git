@@ -1,7 +1,9 @@
+using System;
 using State;
 
 namespace DefaultNamespace
 {
+    [Serializable]
     public abstract class StateBase : IState
     {
         protected string stateName;

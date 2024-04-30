@@ -27,6 +27,11 @@ namespace State.Player
                 playerStateMachine.ChangeStateTo(playerStateMachine.WalkingState);
             }
             
+            if (Input.GetButtonDown("Aim"))
+            {
+                playerStateMachine.ChangeStateTo(playerStateMachine.AimingState);
+            }
+            
             Debug.Log("Idle State Update");
         }
 
