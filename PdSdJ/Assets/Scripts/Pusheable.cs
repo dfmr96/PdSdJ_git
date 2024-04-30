@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public class Pusheable : MonoBehaviour, IInteractuable
 {
     public Vector3 Direction { get;private set; }
     private float speed;
     public List<PusheableDirectioner> directioners;
-    public NavMeshAgent player;
+    [FormerlySerializedAs("player")] public NavMeshAgent playerAgent;
     public float distance;
     private void Start()
     {
@@ -24,10 +25,10 @@ public class Pusheable : MonoBehaviour, IInteractuable
         
     }
 
-    public void SetDirection(NavMeshAgent agent, Vector3 direction)
+    public void SetDirection(CharacterController characterController, Vector3 direction)
     {
-        player = agent;
-        if (player == null)
+        playerAgent = characterController.Agent;
+        if (playerAgent == null)
         {
             Direction = Vector3.zero;
             return;

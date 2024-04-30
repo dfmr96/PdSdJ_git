@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class PusheableDirectioner : MonoBehaviour
 {
     [SerializeField] private PlayerDetector playerDetector;
-    public event Action<NavMeshAgent,Vector3> OnDirectionSet;
+    public event Action<CharacterController,Vector3> OnDirectionSet;
     [SerializeField] private Transform pusheable;
     private void Start()
     {
@@ -16,11 +16,11 @@ public class PusheableDirectioner : MonoBehaviour
         pusheable = transform.parent;
     }
 
-    public void SetDirection(NavMeshAgent agent)
+    public void SetDirection(CharacterController playerController)
     {
         Vector3 direction = (pusheable.position - transform.position).normalized;
         
-        OnDirectionSet?.Invoke(agent,direction);
+        OnDirectionSet?.Invoke(playerController,direction);
     }
 
     public void OnTriggerExit(Collider other)

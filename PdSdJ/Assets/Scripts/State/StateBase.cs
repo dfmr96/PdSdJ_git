@@ -1,7 +1,6 @@
 using System;
-using State;
 
-namespace DefaultNamespace
+namespace State
 {
     [Serializable]
     public abstract class StateBase : IState

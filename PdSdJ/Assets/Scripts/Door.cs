@@ -12,7 +12,7 @@ public class Door : MonoBehaviour, IInteractuable
     {
         if (playerDetector.Player != null)
         {
-            NavMeshAgent player = playerDetector.Player;
+            NavMeshAgent player = playerDetector.Player.Agent;
             player.Warp(moveTo.position);
             
         }

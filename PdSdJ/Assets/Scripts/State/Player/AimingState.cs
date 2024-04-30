@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using DefaultNamespace;
 using UnityEngine;
 
 namespace State.Player
@@ -22,7 +21,7 @@ namespace State.Player
         }
         public override void Enter()
         {
-            Enemy closestEnemy = _autoAim.TryGetClosestEnemy();
+            EnemyController closestEnemy = _autoAim.TryGetClosestEnemy();
 
             if (closestEnemy != null)
             {
@@ -46,7 +45,7 @@ namespace State.Player
 
         private void Shoot()
         {
-            Enemy closestEnemy = ClosestEnemy(out var distance);
+            EnemyController closestEnemy = ClosestEnemy(out var distance);
 
             if (closestEnemy != null)
             {
@@ -55,11 +54,11 @@ namespace State.Player
             }
         }
 
-        private Enemy ClosestEnemy(out float distance)
+        private EnemyController ClosestEnemy(out float distance)
         {
-            Enemy closestEnemy = null;
+            EnemyController closestEnemy = null;
             distance = 0;
-            List<Enemy> enemiesInRange = enemiesDetector.enemiesInRange;
+            List<EnemyController> enemiesInRange = enemiesDetector.enemiesInRange;
             for (int i = 0; i < enemiesInRange.Count; i++)
             {
                 float enemyDistance = (enemiesInRange[i].transform.position - _controller.transform.position).magnitude;

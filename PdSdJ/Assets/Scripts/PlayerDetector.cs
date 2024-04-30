@@ -8,8 +8,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Collider))]
 public class PlayerDetector : MonoBehaviour
 {
-    [field: SerializeField] public NavMeshAgent Player { get; private set; }
-    public event Action<NavMeshAgent> OnPlayerDetected;
+    [field: SerializeField] public CharacterController Player { get; private set; }
+    public event Action<CharacterController> OnPlayerDetected;
     private Collider col;
 
     private void Awake()
@@ -20,7 +20,7 @@ public class PlayerDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out NavMeshAgent playerController))
+        if (other.TryGetComponent(out CharacterController playerController))
         {
             Player = playerController;
             OnPlayerDetected?.Invoke(Player);

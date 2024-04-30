@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angularSpeed: 100
   pushingSpeed: 1
-  walkingSpeed: 2
+  walkingSpeed: 3
   runSpeed: 3

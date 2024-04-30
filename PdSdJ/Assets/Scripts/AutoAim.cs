@@ -8,22 +8,22 @@ public class AutoAim : MonoBehaviour
     [SerializeField] private EnemiesDetector enemiesDetector;
     //[SerializeField] private List<Enemy> enemiesInRange;
 
-    public Enemy TryGetClosestEnemy()
+    public EnemyController TryGetClosestEnemy()
     {
-        Enemy closestEnemy = null;
+        EnemyController closestEnemyController = null;
         float distance = 0;
-        List<Enemy> enemiesInRange = enemiesDetector.enemiesInRange;
+        List<EnemyController> enemiesInRange = enemiesDetector.enemiesInRange;
         for (int i = 0; i < enemiesInRange.Count; i++)
         {
             float enemyDistance = (enemiesInRange[i].transform.position - transform.position).magnitude;
             if (distance == 0 || enemyDistance < distance)
             {
                 distance = enemyDistance;
-                closestEnemy = enemiesInRange[i];
+                closestEnemyController = enemiesInRange[i];
             }
         }
 
-        if (closestEnemy != null) return closestEnemy;
+        if (closestEnemyController != null) return closestEnemyController;
         return null;
     }
 }
