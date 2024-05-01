@@ -6,11 +6,11 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class EnemiesDetector : MonoBehaviour
 {
-    [field: SerializeField] public List<EnemyController> enemiesInRange { get; private set; }
+    [field: SerializeField] public List<Enemy> enemiesInRange { get; private set; }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out EnemyController enemy))
+        if (other.TryGetComponent(out Enemy enemy))
         {
             if (!enemiesInRange.Contains(enemy))
             {
@@ -22,7 +22,7 @@ public class EnemiesDetector : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out EnemyController enemy))
+        if (other.TryGetComponent(out Enemy enemy))
         {
             if (enemiesInRange.Contains(enemy))
             {
@@ -32,8 +32,8 @@ public class EnemiesDetector : MonoBehaviour
         }
     }
 
-    private void RemoveEnemyKilled(EnemyController enemyControllerKilled)
+    private void RemoveEnemyKilled(Enemy enemyKilled)
     {
-        enemiesInRange.Remove(enemyControllerKilled);
+        enemiesInRange.Remove(enemyKilled);
     }
 }

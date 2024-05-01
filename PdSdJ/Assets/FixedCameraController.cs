@@ -4,30 +4,31 @@ using System.Collections.Generic;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class FixedCameraController : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera camera;
-    [SerializeField] private PlayerDetector _playerDetector;
+    [SerializeField] private CinemachineVirtualCamera cam;
+    [SerializeField] private PlayerDetector playerDetector;
     
     private void Awake()
     {
-        camera = GetComponent<CinemachineVirtualCamera>();
+        cam = GetComponent<CinemachineVirtualCamera>();
     }
 
     private void OnEnable()
     {
-        _playerDetector.OnPlayerDetected += TurnCamera;
+        playerDetector.OnPlayerDetected += TurnCamera;
     }
 
     private void OnDisable()
     {
-        _playerDetector.OnPlayerDetected -= TurnCamera;
+        playerDetector.OnPlayerDetected -= TurnCamera;
     }
 
     private void TurnCamera(CharacterController characterController)
     {
         bool turnOn = characterController != null;
-        camera.enabled = turnOn;
+        cam.enabled = turnOn;
     }
 }

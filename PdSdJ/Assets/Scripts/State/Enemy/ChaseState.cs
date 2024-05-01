@@ -5,16 +5,16 @@ namespace State.Enemy
     public class ChaseState : StateBase
     {
         private readonly EnemyStateMachine _enemyStateMachine;
-        private readonly EnemyController _enemyController;
+        private readonly global::Enemy _enemy;
         private readonly NavMeshAgent agent;
         private readonly PlayerDetector _playerDetector;
 
         public ChaseState(EnemyStateMachine enemyStateMachine)
         {
             _enemyStateMachine = enemyStateMachine;
-            _enemyController = _enemyStateMachine.EnemyController;
-            _playerDetector = _enemyController.PlayerDetector;
-            agent = _enemyController.Agent;
+            _enemy = _enemyStateMachine.Enemy;
+            _playerDetector = _enemy.PlayerDetector;
+            agent = _enemy.Agent;
         }
         public override void Enter()
         {

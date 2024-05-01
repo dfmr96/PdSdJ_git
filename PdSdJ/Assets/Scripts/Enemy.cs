@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Factory;
 using ScriptableObjects.Enemies;
 using State.Enemy;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
-public class EnemyController : MonoBehaviour
+public class Enemy : MonoBehaviour , IEnemyProduct
 {
     [field: SerializeField] public PlayerDetector PlayerDetector { get; private set; }
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
@@ -21,21 +22,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private SphereCollider agroCol;
 
 
-    public event Action<EnemyController> OnEnemyKilled;
-
-    private void InitializeData()
-    {
-        Health = enemyData.Health;
-        speed = enemyData.Speed;
-    }
-
-    private void Awake()
-    {
-        InitializeData();
-    }
+    public event Action<Enemy> OnEnemyKilled;
 
     private void Start()
     {
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+        Health = enemyData.Health;
+        speed = enemyData.Speed;
         agroCol.radius = agroRadius;
         Agent = GetComponent<NavMeshAgent>();
         Agent.speed = speed;
@@ -57,4 +54,5 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }

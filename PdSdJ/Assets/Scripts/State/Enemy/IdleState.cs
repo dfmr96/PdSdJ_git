@@ -5,18 +5,18 @@ namespace State.Enemy
     public class IdleState : StateBase
     {
         private readonly EnemyStateMachine _enemyStateMachine;
-        private readonly EnemyController _enemyController;
+        private readonly global::Enemy _enemy;
         private readonly PlayerDetector _playerDetector;
         public IdleState(EnemyStateMachine enemyStateMachine)
         {
             _enemyStateMachine = enemyStateMachine;
-            _enemyController = _enemyStateMachine.EnemyController;
-            _playerDetector = _enemyController.PlayerDetector;
+            _enemy = _enemyStateMachine.Enemy;
+            _playerDetector = _enemy.PlayerDetector;
         }
         public override void Enter()
         {
             _playerDetector.OnPlayerDetected += PlayerDetected;
-            _enemyController.Agent.isStopped = true;
+            _enemy.Agent.isStopped = true;
         }
 
         public override void Update()
@@ -26,7 +26,7 @@ namespace State.Enemy
 
         public override void Exit()
         {
-            _enemyController.Agent.isStopped = false;
+            _enemy.Agent.isStopped = false;
             _playerDetector.OnPlayerDetected -= PlayerDetected;
         }
 

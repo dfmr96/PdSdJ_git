@@ -15,22 +15,22 @@ public class AutoAim : MonoBehaviour
         _autoAimCol = GetComponent<SphereCollider>();
         _autoAimCol.radius = autoAimRange;
     }
-    public EnemyController TryGetClosestEnemy()
+    public Enemy TryGetClosestEnemy()
     {
-        EnemyController closestEnemyController = null;
+        Enemy closestEnemy = null;
         float distance = 0;
-        List<EnemyController> enemiesInRange = enemiesDetector.enemiesInRange;
+        List<Enemy> enemiesInRange = enemiesDetector.enemiesInRange;
         for (int i = 0; i < enemiesInRange.Count; i++)
         {
             float enemyDistance = (enemiesInRange[i].transform.position - transform.position).magnitude;
             if (distance == 0 || enemyDistance < distance)
             {
                 distance = enemyDistance;
-                closestEnemyController = enemiesInRange[i];
+                closestEnemy = enemiesInRange[i];
             }
         }
 
-        if (closestEnemyController != null) return closestEnemyController;
+        if (closestEnemy != null) return closestEnemy;
         return null;
     }
 }

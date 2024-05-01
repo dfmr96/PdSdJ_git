@@ -21,7 +21,7 @@ namespace State.Player
         }
         public override void Enter()
         {
-            EnemyController closestEnemy = _autoAim.TryGetClosestEnemy();
+            global::Enemy closestEnemy = _autoAim.TryGetClosestEnemy();
 
             if (closestEnemy != null)
             {
@@ -45,7 +45,7 @@ namespace State.Player
 
         private void Shoot()
         {
-            EnemyController closestEnemy = ClosestEnemy(out var distance);
+            global::Enemy closestEnemy = ClosestEnemy(out var distance);
 
             if (closestEnemy != null)
             {
@@ -54,11 +54,11 @@ namespace State.Player
             }
         }
 
-        private EnemyController ClosestEnemy(out float distance)
+        private global::Enemy ClosestEnemy(out float distance)
         {
-            EnemyController closestEnemy = null;
+            global::Enemy closestEnemy = null;
             distance = 0;
-            List<EnemyController> enemiesInRange = enemiesDetector.enemiesInRange;
+            List<global::Enemy> enemiesInRange = enemiesDetector.enemiesInRange;
             for (int i = 0; i < enemiesInRange.Count; i++)
             {
                 float enemyDistance = (enemiesInRange[i].transform.position - _controller.transform.position).magnitude;
