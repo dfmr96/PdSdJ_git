@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 8243476681555465639}
-  pushTimer: 1
+  pushTimer: 0.5
   pushCountdown: 0
   <pusheableSelected>k__BackingField: {fileID: 0}
 --- !u!65 &568391349
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesDetector: {fileID: 762801445}
+  autoAimRange: 20
 --- !u!135 &762801446
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -339,17 +340,14 @@ MonoBehaviour:
   <WeaponHeld>k__BackingField: {fileID: 11400000, guid: cefaaffc0004f274d821e75a9fe662e2,
     type: 2}
   <PushInteractor>k__BackingField: {fileID: 568391350}
-  isPushing: 0
-  aimRange: {fileID: 0}
-  rb: {fileID: 0}
+  <StateMachine>k__BackingField:
+    <StateString>k__BackingField: 
+    <Controller>k__BackingField: {fileID: 0}
   interactuableObjects:
     serializedVersion: 2
     m_Bits: 8
   interactionRayLength: 2
   inventoryController: {fileID: 0}
-  <StateMachine>k__BackingField:
-    <StateString>k__BackingField: 
-    <Controller>k__BackingField: {fileID: 0}
 --- !u!54 &1507376159
 Rigidbody:
   m_ObjectHideFlags: 0

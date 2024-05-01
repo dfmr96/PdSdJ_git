@@ -6,7 +6,7 @@ public class GroundItem: MonoBehaviour, IPickeable
 
     public InventoryItemData PickUp(InventoryController inventoryController)
     {
-        inventoryController.ToggleInventory();
+        inventoryController.PickUpPrompt(inventoryItemData, transform.parent.gameObject);
             
         return inventoryItemData;
     }

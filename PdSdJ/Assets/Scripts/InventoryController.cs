@@ -4,15 +4,33 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+
+public enum InventoryStates
+{
+    OnSlots,
+    OnActions,
+    OnCombining,
+    OnItemPickUpPrompt
+}
 public class InventoryController : MonoBehaviour
 {
+    [SerializeField] private InventoryStates state;
+    
     [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject firstSlot;
     [SerializeField] private InventorySlotViewer[] slots;
     [SerializeField] private GameObject actionPanel;
+    
+    [SerializeField] private GameObject pickUpPromptPanel;
+    [SerializeField] private GameObject pickUpYES;
+    [SerializeField] private GameObject pickUpNO;
+    [SerializeField] private TMP_Text pickUpPromptText;
+    
+    
     [SerializeField] private List<Button> actionButtons;
     [SerializeField] private TMP_Text itemName;
     [SerializeField] private TMP_Text itemDescription;
@@ -27,20 +45,26 @@ public class InventoryController : MonoBehaviour
         SelectFirstSlot();
     }
 
+    private void Awake()
+    {
+        InitSlotReferences();
+        inventoryPanel.SetActive(false);
+        actionPanel.SetActive(false);
+    }
     public void ToggleInventory()
     {
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);
         if (inventoryPanel.activeSelf)
         {
             Time.timeScale = 0;
-            Debug.Log($"{Time.timeScale}");
+            //Debug.Log($"{Time.timeScale}");
             inventory.Reorder();
             RefreshSlots();
             selector.SetSelectedGameObject(firstSlot);
             return;
         }
         Time.timeScale = 1;
-        Debug.Log($"{Time.timeScale}");
+        //Debug.Log($"{Time.timeScale}");
     }
 
     public void OnItemSelected(InventoryItem inventoryItem)
@@ -109,12 +133,6 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        InitSlotReferences();
-        inventoryPanel.SetActive(false);
-        actionPanel.SetActive(false);
-    }
 
     private void OnCombineItem()
     {
@@ -154,5 +172,32 @@ public class InventoryController : MonoBehaviour
     {
         itemName.ClearMesh();
         itemDescription.ClearMesh();
+    }
+
+    public void PickUpPrompt(InventoryItemData inventoryItemData, GameObject groundItem)
+    {
+        inventoryPanel.SetActive(true);
+        pickUpPromptPanel.SetActive(true);
+        selector.SetSelectedGameObject(pickUpYES);
+        pickUpPromptText.SetText($"Do you want to take {inventoryItemData.name}?");
+        Button yesButton = pickUpYES.GetComponent<Button>();
+        Button noButton = pickUpNO.GetComponent<Button>();
+        yesButton.onClick.AddListener(() =>
+        {
+            inventory.AddItem(inventoryItemData, 10);
+            yesButton.onClick.RemoveAllListeners();
+            noButton.onClick.RemoveAllListeners();
+            pickUpPromptPanel.SetActive(false);
+            ToggleInventory();
+            Destroy(groundItem);
+        });
+        noButton.onClick.AddListener(() =>
+        {
+            yesButton.onClick.RemoveAllListeners();
+            noButton.onClick.RemoveAllListeners();
+            pickUpPromptPanel.SetActive(false);
+            ToggleInventory();
+        });
+        //Debug.Log("Listener Added");
     }
 }

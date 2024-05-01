@@ -40,7 +40,7 @@ namespace State.Player
             
             Walk(vertical, horizontal);
             
-            Debug.Log("Walking State Update");
+            //Debug.Log("Walking State Update");
         }
 
         private void Walk(float vertical, float horizontal)
@@ -51,7 +51,7 @@ namespace State.Player
 
         public override void Exit()
         {
-            Debug.Log("Walking State exit");
+            //Debug.Log("Walking State exit");
         }
     }
 }

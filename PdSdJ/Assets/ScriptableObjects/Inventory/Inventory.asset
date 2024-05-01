@@ -14,31 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldItems:
   - slot: 0
-    amount: 1
-    inventoryItemData: {fileID: 11400000, guid: 8227314c08fad254e87cba9e7655c9bc,
+    amount: 40
+    inventoryItemData: {fileID: 11400000, guid: ce4b53c01a4e40c4bbda4cd28a3e7b5c,
       type: 2}
-  - slot: 1
-    amount: 1
-    inventoryItemData: {fileID: 11400000, guid: 0994ea6cafbe25e4daf3db686b666079,
-      type: 2}
-  - slot: 2
-    amount: 5
-    inventoryItemData: {fileID: 11400000, guid: 8baf290ff8f507f4387f5fd0ebf1d61c,
-      type: 2}
-  - slot: 3
+  - slot: 0
     amount: 0
     inventoryItemData: {fileID: 0}
-  - slot: 4
+  - slot: 0
     amount: 0
     inventoryItemData: {fileID: 0}
-  - slot: 5
+  - slot: 0
+    amount: 0
+    inventoryItemData: {fileID: 0}
+  - slot: 0
+    amount: 0
+    inventoryItemData: {fileID: 0}
+  - slot: 0
     amount: 0
     inventoryItemData: {fileID: 0}
   weaponEquipped: {fileID: 11400000, guid: cefaaffc0004f274d821e75a9fe662e2, type: 2}
   selectedItem:
-    slot: 2
-    amount: 0
-    inventoryItemData: {fileID: 0}
+    slot: 0
+    amount: 40
+    inventoryItemData: {fileID: 11400000, guid: ce4b53c01a4e40c4bbda4cd28a3e7b5c,
+      type: 2}
   combinationItemSelection: {fileID: 0}
   combinationTable: {fileID: 11400000, guid: 8b69bb9e010226b4180b8e8fb3608ef4, type: 2}
   itemToCombineA:

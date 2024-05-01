@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519446e285a243e4811f463e1293d109, type: 3}
   m_Name: HandgunAmmo
   m_EditorClassIdentifier: 
-  name: HandgunAmmo
+  name: Handgun Ammo
   description: Low caliber ammo for handguns
   sprite: {fileID: 1508203579, guid: 505ead0eb0368254e8e96c70d275752e, type: 3}
   amount: 30

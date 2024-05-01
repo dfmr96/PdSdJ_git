@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,14 @@ using UnityEngine;
 public class AutoAim : MonoBehaviour
 {
     [SerializeField] private EnemiesDetector enemiesDetector;
-    //[SerializeField] private List<Enemy> enemiesInRange;
+    private SphereCollider _autoAimCol;
 
+    [SerializeField] private float autoAimRange;
+    private void Awake()
+    {
+        _autoAimCol = GetComponent<SphereCollider>();
+        _autoAimCol.radius = autoAimRange;
+    }
     public EnemyController TryGetClosestEnemy()
     {
         EnemyController closestEnemyController = null;

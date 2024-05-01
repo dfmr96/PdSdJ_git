@@ -17,10 +17,10 @@ public class CharacterController : MonoBehaviour
     
     [field: SerializeField] public WeaponItemData WeaponHeld { get; private set; }
     [field: SerializeField] public PushInteractor PushInteractor { get; private set; }
-    [SerializeField] private bool isPushing = false;
-    [SerializeField] private CapsuleCollider aimRange;
-    [SerializeField] private Rigidbody rb;
+    
+    [field: SerializeField] public PlayerStateMachine StateMachine { get; private set; }
 
+    
 
     [Header("Interaction")]
     [SerializeField] private LayerMask interactuableObjects;
@@ -28,27 +28,11 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private InventoryController inventoryController;
 
 
-    [field: SerializeField] public PlayerStateMachine StateMachine { get; private set; }
 
     private void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
-        rb = GetComponent<Rigidbody>();
         StateMachine = new PlayerStateMachine(this);
-    }
-
-    public void PushObject(bool canPush)
-    {
-        if (canPush)
-        {
-            isPushing = true;
-            //CurrentSpeed = pushingSpeed;
-        }
-        else
-        {
-            //CurrentSpeed = walkingSpeed;
-            isPushing = false;
-        }
     }
 
     void Update()

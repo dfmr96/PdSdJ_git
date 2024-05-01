@@ -22,12 +22,4 @@ public class PusheableDirectioner : MonoBehaviour
         
         OnDirectionSet?.Invoke(playerController,direction);
     }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent(out CharacterController playerController))
-        {
-            playerController.PushObject(false);
-        }
-    }
 }

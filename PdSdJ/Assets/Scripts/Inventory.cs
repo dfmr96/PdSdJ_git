@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
+using UnityEngine.Events;
+
 [CreateAssetMenu(menuName = "Inventory", fileName = "New Inventory")]
 public class Inventory : ScriptableObject
 {
@@ -44,7 +46,7 @@ public class Inventory : ScriptableObject
             }
         }
     }
-
+    
     public void DeleteItem(InventoryItem inventoryItem)
     {
         InventoryItem tempInventoryItem = heldItems[inventoryItem.slot];

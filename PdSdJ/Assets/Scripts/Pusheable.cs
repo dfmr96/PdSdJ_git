@@ -27,12 +27,13 @@ public class Pusheable : MonoBehaviour, IInteractuable
 
     public void SetDirection(CharacterController characterController, Vector3 direction)
     {
-        playerAgent = characterController.Agent;
-        if (playerAgent == null)
+        
+        if (characterController == null)
         {
             Direction = Vector3.zero;
             return;
         }
+        playerAgent = characterController.Agent;
         Direction = direction;
     }
 

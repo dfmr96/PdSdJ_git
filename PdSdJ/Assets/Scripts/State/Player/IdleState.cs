@@ -13,7 +13,7 @@ namespace State.Player
         } 
         public override void Enter()
         {
-            Debug.Log("Idle State enter");
+            //Debug.Log("Idle State enter");
         }
 
         public override void Update()
@@ -31,12 +31,12 @@ namespace State.Player
                 playerStateMachine.ChangeStateTo(playerStateMachine.AimingState);
             }
             
-            Debug.Log("Idle State Update");
+            //Debug.Log("Idle State Update");
         }
 
         public override void Exit()
         {
-            Debug.Log("Idle State exit");
+            //Debug.Log("Idle State exit");
         }
     }
 }
