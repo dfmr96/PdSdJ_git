@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Inventory;
+using Inventory.Controllers;
 using ScriptableObjects.Player;
 using State.Player;
 using UnityEditor.Search;
@@ -66,6 +68,6 @@ public class CharacterController : MonoBehaviour
 
     private void ToggleInventory()
     {
-        inventoryController.ToggleInventory();
+        inventoryController.OpenInventory();
     }
 }

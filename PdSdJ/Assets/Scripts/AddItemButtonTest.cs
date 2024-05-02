@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Inventory;
 using TMPro;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine;
 public class AddItemButtonTest : MonoBehaviour
 {
     [SerializeField] private InventoryItem itemToAdd;
-    [SerializeField] private Inventory inventory;
+    [SerializeField] private Inventory.Inventory inventory;
     [SerializeField] private TMP_Text text;
 
 

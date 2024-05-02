@@ -1,4 +1,7 @@
+using Inventory;
+using Inventory.Controllers;
+
 public interface IPickeable
 {
-    InventoryItemData PickUp(InventoryController inventoryController);
+    void PickUp(InventoryController inventoryController);
 }

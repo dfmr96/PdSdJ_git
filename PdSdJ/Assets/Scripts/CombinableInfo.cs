@@ -1,3 +1,4 @@
+using Inventory;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "CombinableInfo", fileName = "New CombinableInfo", order = 0)]

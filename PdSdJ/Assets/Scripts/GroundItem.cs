@@ -1,13 +1,14 @@
+using Inventory;
+using Inventory.Controllers;
 using UnityEngine;
 
 public class GroundItem: MonoBehaviour, IPickeable
 {
-    [SerializeField] private InventoryItemData inventoryItemData;
+    [field: SerializeField] public InventoryItemData InventoryItemData { get; private set; }
+    [field: SerializeField] public int Amount { get; private set; }
 
-    public InventoryItemData PickUp(InventoryController inventoryController)
+    public void PickUp(InventoryController inventoryController)
     {
-        inventoryController.PickUpPrompt(inventoryItemData, transform.parent.gameObject);
-            
-        return inventoryItemData;
+        inventoryController.PickUpPrompt(this);
     }
 }

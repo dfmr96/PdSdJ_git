@@ -1,3 +1,4 @@
+using Inventory;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ItemData/AmmoItemData", fileName = "New AmmoItemData", order = 0)]
