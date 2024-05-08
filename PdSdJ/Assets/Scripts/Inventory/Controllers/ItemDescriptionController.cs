@@ -14,14 +14,14 @@ namespace Inventory.Controllers
         [SerializeField] private TMP_Text itemName;
         [SerializeField] private TMP_Text itemDescription;
 
-        private void Awake()
+        private void Start()
         {
-            _inventoryController._slotsController.OnItemSelected += SetItemNameAndDescription;
+            _inventoryController.SlotsController.OnItemSelected += SetItemNameAndDescription;
         }
 
         private void OnDestroy()
         {
-            _inventoryController._slotsController.OnItemSelected -= SetItemNameAndDescription;
+            _inventoryController.SlotsController.OnItemSelected -= SetItemNameAndDescription;
         }
 
         public void SetItemNameAndDescription(InventoryItem inventoryItem)
@@ -29,11 +29,13 @@ namespace Inventory.Controllers
             InventoryItemData itemData = inventoryItem.inventoryItemData;
             if (itemData == null)
             {
+                itemSprite.sprite = null;
                 itemName.ClearMesh();
                 itemDescription.ClearMesh();
             }
             else
             {
+                itemSprite.sprite = itemData.sprite;
                 itemName.SetText(itemData.name);
                 itemDescription.SetText(itemData.description);
             }

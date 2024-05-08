@@ -49,6 +49,7 @@ namespace Inventory
     
         public void OnSubmit(BaseEventData eventData)
         {
+            _slotsController.ItemSubmit();
             //inventoryController.SetSelectedItem(inventory.GetItem(slot));
         }
     }

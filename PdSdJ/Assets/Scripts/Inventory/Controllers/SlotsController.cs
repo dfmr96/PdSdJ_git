@@ -8,19 +8,25 @@ namespace Inventory.Controllers
     public class SlotsController : MonoBehaviour
     {
         [SerializeField] private InventoryController _inventoryController;
+        [SerializeField] private ItemDescriptionController ItemDescriptionController;
+        [SerializeField] private Inventory _inventory;
         [SerializeField] private InventorySlotViewer firstSlot;
         [SerializeField] private InventorySlotViewer[] slots;
         private SelectorView selector;
 
         public event Action<InventoryItem> OnItemSelected;
+        public event Action OnItemSubmit;
 
         private void Awake()
         {
             selector = _inventoryController.Selector;
+            _inventory = _inventoryController.Inventory;
+            
             SetSlotViewerReferences();
             
             _inventoryController.OnInventoryOpened += RefreshSlots;
             _inventoryController.OnInventoryOpened += SelectFirstSlot;
+            _inventoryController.ActionsController.OnActionCalled += SelectFirstSlot;
         }
         
         private void SetSlotViewerReferences()
@@ -51,11 +57,34 @@ namespace Inventory.Controllers
                 slots[i].RefreshData();
             }
         }
-
         private void OnDestroy()
         {
             _inventoryController.OnInventoryOpened -= SelectFirstSlot;
             _inventoryController.OnInventoryOpened -= RefreshSlots;
+            _inventoryController.ActionsController.OnActionCalled -= SelectFirstSlot;
+        }
+        public void ItemSubmit()
+        {
+            switch (_inventoryController.State)
+            {
+                case InventoryStates.OnCombining:
+                    _inventory.SetCombineItemB();
+                    _inventory.CombineItems();
+                    SelectFirstSlot();
+                    RefreshSlots();
+                    _inventoryController.SetState(InventoryStates.OnSlotSelect);
+                    break;
+                case InventoryStates.OnSlotSelect:
+                    _inventoryController.SetState(InventoryStates.OnActions);
+                    OnItemSubmit?.Invoke();
+                    break;
+            }
+        }
+
+        private void OnEnable()
+        {
+            InventoryItem firstItem = _inventory.GetItem(0);
+            if (firstItem.inventoryItemData != null) ItemDescriptionController.SetItemNameAndDescription(firstItem);
         }
     }
 }

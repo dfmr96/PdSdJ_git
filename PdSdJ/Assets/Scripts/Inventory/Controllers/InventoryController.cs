@@ -1,158 +1,108 @@
 using System;
-using System.Collections.Generic;
 using State.Inventory;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Inventory.Controllers
 {
+    public enum InventoryStates
+    {
+        Closed,
+        OnSlotSelect,
+        OnActions,
+        OnCombining,
+        OnItemPickUpPrompt
+    }
     public class InventoryController : MonoBehaviour
     {
-        [SerializeField] private InventoryStates state;
-        [field: SerializeField] public InventoryStateMachine inventoryStateMachine { get; private set; }
+        [field: SerializeField] public InventoryStates State { get; private set; }
+        [field: SerializeField] public InventoryStateMachine InventoryStateMachine { get; private set; }
     
-        [field: SerializeField] public SlotsController _slotsController { get; private set; }
-
+        [field: SerializeField] public SlotsController SlotsController { get; private set; }
         [field: SerializeField] public Inventory Inventory { get; private set; }
-        [SerializeField] private GameObject firstSlot;
-        [SerializeField] private InventorySlotViewer[] slots;
-    
-        [field: SerializeField] public ActionsController actionsController { get; private set; }
-        [SerializeField] private GameObject actionPanel;
-        [SerializeField] private List<Button> actionButtons;
-    
-    
-        [field: SerializeField] public PickUpController pickUpController { get; private set; }
-        [SerializeField] private GameObject pickUpPromptPanel;
-        [SerializeField] private GameObject pickUpYES;
-        [SerializeField] private GameObject pickUpNO;
-        [SerializeField] private TMP_Text pickUpPromptText;
-
+        [field: SerializeField] public ActionsController ActionsController { get; private set; }
+        [field: SerializeField] public PickUpController PickUpController { get; private set; }
         [field: SerializeField] public ItemDescriptionController ItemDescriptionController { get; private set; }
-        [SerializeField] private TMP_Text itemName;
-        [SerializeField] private TMP_Text itemDescription;
-
-        [SerializeField] private bool isCombinating = false;
 
         [SerializeField] private GameObject inventoryPanel;
+        [SerializeField] private GameObject actionPanel;
+        [SerializeField] private GameObject pickUpPromptPanel;
         [field: SerializeField] public SelectorView Selector { get; private set; }
-
+        
         public event Action OnInventoryOpened;
         private void Awake()
         {
             inventoryPanel.SetActive(false);
         }
+
+        private void Start()
+        {
+            SlotsController.OnItemSubmit += OpenActionPanel;
+            //ActionsController.OnUse += CloseActionPanel;
+            ActionsController.OnActionCalled += CloseActionPanel;
+        }
+
+        private void Update()
+        {
+            
+        }
+
+        private void CloseInventory()
+        {
+            Time.timeScale = 1;
+            inventoryPanel.SetActive(false);
+            State = InventoryStates.Closed;
+        }
+
         public void OpenInventory()
         {
             Time.timeScale = 0;
             Inventory.Reorder();
             inventoryPanel.SetActive(true);
+            State = InventoryStates.OnSlotSelect;
             OnInventoryOpened?.Invoke();
         }
 
-        /*private void OnSlotSubmit()
+        public void ToggleInventory()
         {
-            if (!isCombinating)
+            if (!inventoryPanel.activeSelf)
             {
-                ToggleActionPanel(true);
+                Debug.Log("Inventory Opened");
+                OpenInventory();
             }
             else
             {
-                Debug.Log($"Item B {Inventory.itemToCombineB} a combinar seleccionado");
-                Inventory.SetCombineItemB();
-                OnCombineItem();
-            }
-        }*/
-
-        /*public void SetSelectedItem(InventoryItem item)
-        {
-            Debug.Log($"{Inventory.selectedItem.inventoryItemData.name} seleccionado");
-
-            OnSlotSubmit();
-        }*/
-
-        public void UseItem()
-        {
-            Inventory.Use();
-            ToggleActionPanel(false);
-            Inventory.Reorder();
-            RefreshSlots();
-        }
-
-        public void CombineAction()
-        {
-            isCombinating = true;
-            Inventory.SetCombineItemA();
-            ToggleActionPanel(false);
-            Debug.Log("Item A a combinar seleccionado");
-            SelectFirstSlot();
-        }
-
-        public void RefreshSlots()
-        {
-            for (int i = 0; i < slots.Length; i++)
-            {
-                slots[i].RefreshData();
+                CloseInventory();
+                Debug.Log("Inventory Closed");
             }
         }
 
-
-        private void OnCombineItem()
+        public void OpenActionPanel()
         {
-            Inventory.CombineItems();
-            isCombinating = false;
-            SelectFirstSlot();
-            RefreshSlots();
+            actionPanel.SetActive(true);
         }
 
-        private void ToggleActionPanel(bool value)
+        public void CloseActionPanel()
         {
-            actionPanel.SetActive(value);
-
-            if (value)
-            {
-                SelectFirstAction();
-            }
-            else
-            {
-                SelectFirstSlot();
-            }
-        }
-        private void SelectFirstSlot()
-        {
-            Selector.SetSelectedGameObject(firstSlot);
-        }
-        private void SelectFirstAction()
-        {
-            Selector.SetSelectedGameObject(actionButtons[0].gameObject);
+            actionPanel.SetActive(false);
         }
 
-        public void PickUpPrompt(GroundItem groundItem)
+        private void OnDestroy()
+        {
+            SlotsController.OnItemSubmit -= OpenActionPanel;
+            //ActionsController.OnUse -= CloseActionPanel;
+            ActionsController.OnActionCalled -= CloseActionPanel;
+        }
+
+        public void EnablePickUpPrompt(GroundItem groundItem)
         {
             inventoryPanel.SetActive(true);
             pickUpPromptPanel.SetActive(true);
-            Selector.SetSelectedGameObject(pickUpYES);
-            pickUpPromptText.SetText($"Do you want to take {groundItem.InventoryItemData.name}?");
-            Button yesButton = pickUpYES.GetComponent<Button>();
-            Button noButton = pickUpNO.GetComponent<Button>();
-            yesButton.onClick.AddListener(() =>
-            {
-                Inventory.AddItem(groundItem.InventoryItemData, groundItem.Amount);
-                yesButton.onClick.RemoveAllListeners();
-                noButton.onClick.RemoveAllListeners();
-                pickUpPromptPanel.SetActive(false);
-                OpenInventory();
-                Destroy(groundItem.transform.parent);
-            });
-            noButton.onClick.AddListener(() =>
-            {
-                yesButton.onClick.RemoveAllListeners();
-                noButton.onClick.RemoveAllListeners();
-                pickUpPromptPanel.SetActive(false);
-                OpenInventory();
-            });
-            //Debug.Log("Listener Added");
+            PickUpController.BuildPrompt(groundItem);
+        }
+
+        public void SetState(InventoryStates state)
+        {
+            State = state;
         }
     }
 }

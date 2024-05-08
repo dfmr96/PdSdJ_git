@@ -68,7 +68,12 @@ namespace Inventory
             {
                 InventoryItemData newItem = selectedItem.inventoryItemData.combinableInfo.GetCombinationResult(
                     itemToCombineA.inventoryItemData,
-                    itemToCombineB.inventoryItemData); 
+                    itemToCombineB.inventoryItemData);
+                if (newItem == null)
+                {
+                    Debug.Log($"Can't combine {itemToCombineA.inventoryItemData.name} and {itemToCombineB.inventoryItemData.name}");
+                    return;
+                }
                 Debug.Log($"{newItem.name} encontrado");
                 if (itemToCombineA.amount < 2)
                 {

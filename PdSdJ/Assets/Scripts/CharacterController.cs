@@ -68,6 +68,6 @@ public class CharacterController : MonoBehaviour
 
     private void ToggleInventory()
     {
-        inventoryController.OpenInventory();
+        inventoryController.ToggleInventory();
     }
 }

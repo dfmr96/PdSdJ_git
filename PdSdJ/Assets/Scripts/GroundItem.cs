@@ -9,6 +9,6 @@ public class GroundItem: MonoBehaviour, IPickeable
 
     public void PickUp(InventoryController inventoryController)
     {
-        inventoryController.PickUpPrompt(this);
+        inventoryController.EnablePickUpPrompt(this);
     }
 }
