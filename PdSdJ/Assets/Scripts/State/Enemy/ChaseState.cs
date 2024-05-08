@@ -25,6 +25,12 @@ namespace State.Enemy
         {
             CharacterController player = _playerDetector.Player;
             if (player != null) agent.SetDestination(player.transform.position);
+
+            float distance = (player.transform.position - _enemy.transform.position).magnitude;
+            if (distance <= _enemy.EnemyData.Range)
+            {
+                _enemyStateMachine.ChangeStateTo(_enemyStateMachine.AttackState);
+            }
         }
 
         public override void Exit()

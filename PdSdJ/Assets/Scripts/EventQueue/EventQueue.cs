@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Command;
 using UnityEngine;
@@ -68,6 +69,30 @@ namespace EventQueue
 
             IDeletableCommand command = undoableCommands.Pop();
             command.Undo();
+        }
+
+        public void RemoveAllCommandOfType<T>() where T : IDeletableCommand
+        {
+            Stack<IDeletableCommand> tempStack = new Stack<IDeletableCommand>();
+
+            while (undoableCommands.Count > 0)
+            {
+                IDeletableCommand command = undoableCommands.Pop();
+                if (command is not T)
+                {
+                    tempStack.Push(command);
+                }
+                else
+                {
+                    command.Undo();
+                    Debug.Log($"{command.GetType()} ha sido borrado");
+                }
+            }
+
+            while (tempStack.Count > 0)
+            {
+                undoableCommands.Push(tempStack.Pop());
+            }
         }
     } 
 }

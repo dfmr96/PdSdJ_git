@@ -67,6 +67,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1819695867978160583, guid: 4327ad371f952fa4e8abfc387b938dbe,
+        type: 3}
+      propertyPath: <EnemyData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 1437744e9d5788a4795cd00af45e7a76,
+        type: 2}
     - target: {fileID: 1819695868882586326, guid: 4327ad371f952fa4e8abfc387b938dbe,
         type: 3}
       propertyPath: m_Mesh

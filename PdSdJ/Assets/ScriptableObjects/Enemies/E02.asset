@@ -17,5 +17,7 @@ MonoBehaviour:
   <Health>k__BackingField: 200
   <Damage>k__BackingField: 1
   <Speed>k__BackingField: 1
+  <AttackDuration>k__BackingField: 0.75
+  <Range>k__BackingField: 2
   <EnemyPrefab>k__BackingField: {fileID: 3809643819452933925, guid: bf94fe3aa1f55d6429e9d36eeb062960,
     type: 3}

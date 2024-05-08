@@ -8,7 +8,7 @@ using State.Player;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.AI;
-public class CharacterController : MonoBehaviour
+public class CharacterController : MonoBehaviour, IDamageable
 {
     [field: SerializeField] public int CurrentSpeed { get; private set; }
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
@@ -22,7 +22,10 @@ public class CharacterController : MonoBehaviour
     
     [field: SerializeField] public PlayerStateMachine StateMachine { get; private set; }
 
-    
+    [field: SerializeField] public GameObject weaponHeld { get; private set; }
+    [field: SerializeField] public BulletCasingsPool BulletCasingsPool { get; private set; }
+
+    [SerializeField] private float currentHealth;
 
     [Header("Interaction")]
     [SerializeField] private LayerMask interactuableObjects;
@@ -69,5 +72,10 @@ public class CharacterController : MonoBehaviour
     private void ToggleInventory()
     {
         inventoryController.ToggleInventory();
+    }
+
+    public void TakeDamage(float damageTaken)
+    {
+        Debug.Log($"Player dañado con {damageTaken}");
     }
 }

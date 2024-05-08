@@ -8,12 +8,15 @@ namespace State.Enemy
         public global::Enemy Enemy { get; private set; }
         public IdleState IdleState { get; }
         public ChaseState ChaseState { get; }
+        
+        public AttackState AttackState { get; }
 
         public EnemyStateMachine(global::Enemy enemy)
         {
             Enemy = enemy;
             IdleState = new IdleState(this);
             ChaseState = new ChaseState(this);
+            AttackState = new AttackState(this);
             Initialize(IdleState);
         }
     }

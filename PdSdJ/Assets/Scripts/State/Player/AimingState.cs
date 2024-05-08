@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Pool;
 using UnityEngine;
 
 namespace State.Player
@@ -21,6 +22,7 @@ namespace State.Player
         }
         public override void Enter()
         {
+            _controller.weaponHeld.SetActive(true);
             global::Enemy closestEnemy = _autoAim.TryGetClosestEnemy();
 
             if (closestEnemy != null)
@@ -49,9 +51,28 @@ namespace State.Player
 
             if (closestEnemy != null)
             {
-                closestEnemy.TakeDamage(weaponHeld.damage);
-                Debug.Log($"{closestEnemy} took {weaponHeld.damage} damage at {distance}m. Current Health: {closestEnemy.Health}");
+                if (closestEnemy.gameObject.TryGetComponent(out IDamageable damageableEnemy))
+                {
+                    damageableEnemy.TakeDamage(weaponHeld.damage);
+                    Debug.Log($"{closestEnemy} took {weaponHeld.damage} damage at {distance}m. Current Health: {closestEnemy.Health}");
+                }
+                else
+                {
+                    Debug.LogError("Enemy not damageable");
+                }
             }
+
+            GetBulletCasing();
+        }
+
+        private void GetBulletCasing()
+        {
+            BulletCasing bulletCasing = _controller.BulletCasingsPool._objectPool.Get();
+            if (bulletCasing == null)
+            {
+                return;
+            }
+            bulletCasing.Deactivate();
         }
 
         private global::Enemy ClosestEnemy(out float distance)
@@ -74,7 +95,7 @@ namespace State.Player
 
         public override void Exit()
         {
-            //throw new System.NotImplementedException();
+            _controller.weaponHeld.SetActive(false);
         }
     }
 }

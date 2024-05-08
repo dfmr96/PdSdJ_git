@@ -7,14 +7,14 @@ using State.Enemy;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
-public class Enemy : MonoBehaviour , IEnemyProduct
+public class Enemy : MonoBehaviour , IEnemyProduct, IDamageable
 {
     [field: SerializeField] public PlayerDetector PlayerDetector { get; private set; }
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
     [field: SerializeField] public float Health { get; private set; }
     [field: SerializeField] public EnemyStateMachine EnemyStateMachine { get; private set; }
-    
-    [SerializeField] private EnemyData enemyData;
+
+    [field: SerializeField] public EnemyData EnemyData { get; private set; }
     [SerializeField] private float speed;
     
     
@@ -31,8 +31,8 @@ public class Enemy : MonoBehaviour , IEnemyProduct
 
     public void Initialize()
     {
-        Health = enemyData.Health;
-        speed = enemyData.Speed;
+        Health = EnemyData.Health;
+        speed = EnemyData.Speed;
         agroCol.radius = agroRadius;
         Agent = GetComponent<NavMeshAgent>();
         Agent.speed = speed;
@@ -55,4 +55,8 @@ public class Enemy : MonoBehaviour , IEnemyProduct
         }
     }
 
+    private void OnDisable()
+    {
+        OnEnemyKilled?.Invoke(this);
+    }
 }
