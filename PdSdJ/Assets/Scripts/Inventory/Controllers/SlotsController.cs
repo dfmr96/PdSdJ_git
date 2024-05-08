@@ -8,10 +8,10 @@ namespace Inventory.Controllers
     public class SlotsController : MonoBehaviour
     {
         [SerializeField] private InventoryController _inventoryController;
-        [SerializeField] private ItemDescriptionController ItemDescriptionController;
-        [SerializeField] private Inventory _inventory;
         [SerializeField] private InventorySlotViewer firstSlot;
         [SerializeField] private InventorySlotViewer[] slots;
+        private ItemDescriptionController ItemDescriptionController;
+        private Inventory _inventory;
         private SelectorView selector;
 
         public event Action<InventoryItem> OnItemSelected;
@@ -21,6 +21,8 @@ namespace Inventory.Controllers
         {
             selector = _inventoryController.Selector;
             _inventory = _inventoryController.Inventory;
+            IItemDescriptionProvider itemDescriptionProvider = _inventoryController;
+            ItemDescriptionController = itemDescriptionProvider.ItemDescriptionController;
             
             SetSlotViewerReferences();
             

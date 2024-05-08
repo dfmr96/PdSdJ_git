@@ -12,21 +12,21 @@ namespace Inventory.Controllers
         OnCombining,
         OnItemPickUpPrompt
     }
-    public class InventoryController : MonoBehaviour
+    public class InventoryController : MonoBehaviour , ISlotProvider, IActionProvider, IPickUpProvider,IItemDescriptionProvider
     {
         [field: SerializeField] public InventoryStates State { get; private set; }
         [field: SerializeField] public InventoryStateMachine InventoryStateMachine { get; private set; }
-    
         [field: SerializeField] public SlotsController SlotsController { get; private set; }
         [field: SerializeField] public Inventory Inventory { get; private set; }
         [field: SerializeField] public ActionsController ActionsController { get; private set; }
         [field: SerializeField] public PickUpController PickUpController { get; private set; }
         [field: SerializeField] public ItemDescriptionController ItemDescriptionController { get; private set; }
 
+        [field: SerializeField] public SelectorView Selector { get; private set; }
+        
         [SerializeField] private GameObject inventoryPanel;
         [SerializeField] private GameObject actionPanel;
         [SerializeField] private GameObject pickUpPromptPanel;
-        [field: SerializeField] public SelectorView Selector { get; private set; }
         
         public event Action OnInventoryOpened;
         private void Awake()
