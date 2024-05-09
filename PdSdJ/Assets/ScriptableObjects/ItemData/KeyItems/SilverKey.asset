@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb34d4272a594cf1be778b2ec0191aa4, type: 3}
+  m_Name: SilverKey
+  m_EditorClassIdentifier: 
+  name: Silver Key
+  description: A big key
+  sprite: {fileID: -1050940627, guid: 505ead0eb0368254e8e96c70d275752e, type: 3}
+  amount: 1
+  usabilityData: {fileID: 11400000, guid: ef5ad61fba52c944e83fa56c75b6099a, type: 2}
+  combinableInfo: {fileID: 0}
+  id: 1

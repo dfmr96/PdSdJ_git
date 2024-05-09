@@ -3,5 +3,5 @@ using Inventory.Controllers;
 
 public interface IPickeable
 {
-    void PickUp(InventoryController inventoryController);
+    void PickUp(InventoryController inventoryController, CharacterController player);
 }

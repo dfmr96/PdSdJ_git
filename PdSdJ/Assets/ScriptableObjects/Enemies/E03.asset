@@ -16,8 +16,7 @@ MonoBehaviour:
   <Name>k__BackingField: Enemy 3
   <Health>k__BackingField: 50
   <Damage>k__BackingField: 1
-  <Speed>k__BackingField: 3
+  <Speed>k__BackingField: 1
   <AttackDuration>k__BackingField: 4
   <Range>k__BackingField: 2
-  <EnemyPrefab>k__BackingField: {fileID: 7255164096007172603, guid: 9614ec1efcdb8b34bb803d09b93c8f75,
-    type: 3}
+  <EnemyPrefab>k__BackingField: {fileID: 0}

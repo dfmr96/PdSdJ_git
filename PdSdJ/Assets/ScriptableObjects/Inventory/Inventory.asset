@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldItems:
   - slot: 0
-    amount: 40
-    inventoryItemData: {fileID: 11400000, guid: ce4b53c01a4e40c4bbda4cd28a3e7b5c,
+    amount: -1
+    inventoryItemData: {fileID: 11400000, guid: b6b317fa8d5714e48b6ff6f546c38a97,
       type: 2}
   - slot: 0
     amount: 0
@@ -35,8 +35,8 @@ MonoBehaviour:
   weaponEquipped: {fileID: 11400000, guid: cefaaffc0004f274d821e75a9fe662e2, type: 2}
   selectedItem:
     slot: 0
-    amount: 40
-    inventoryItemData: {fileID: 11400000, guid: ce4b53c01a4e40c4bbda4cd28a3e7b5c,
+    amount: 0
+    inventoryItemData: {fileID: 11400000, guid: b6b317fa8d5714e48b6ff6f546c38a97,
       type: 2}
   combinationItemSelection: {fileID: 0}
   combinationTable: {fileID: 11400000, guid: 8b69bb9e010226b4180b8e8fb3608ef4, type: 2}

@@ -1,4 +1,5 @@
 using Inventory;
+using ScriptableObjects.ItemData;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ItemData/WeaponItemData", fileName = "New WeaponItemData", order = 0)]

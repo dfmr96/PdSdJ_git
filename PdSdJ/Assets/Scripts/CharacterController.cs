@@ -32,10 +32,13 @@ public class CharacterController : MonoBehaviour, IDamageable
     [SerializeField] private int interactionRayLength;
     [SerializeField] private InventoryController inventoryController;
 
+    private Rigidbody rb;
+
 
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         Agent = GetComponent<NavMeshAgent>();
         StateMachine = new PlayerStateMachine(this);
     }
@@ -52,7 +55,7 @@ public class CharacterController : MonoBehaviour, IDamageable
 
 
 
-    private void Interact()
+    public IInteractuable Interact()
     {
         Debug.DrawRay(transform.position, transform.forward * interactionRayLength, Color.red, 0.25f);
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, interactionRayLength, interactuableObjects))
@@ -60,16 +63,19 @@ public class CharacterController : MonoBehaviour, IDamageable
             if (hit.collider.TryGetComponent(out IInteractuable interactuable))
             {
                 interactuable.Interact();
+                return interactuable;
             }
             
             if (hit.collider.TryGetComponent(out IPickeable pickeable))
             {
-                pickeable.PickUp(inventoryController);
+                pickeable.PickUp(inventoryController, this);
             }
         }
+        Debug.Log("Interactuar llamado");
+        return default;
     }
 
-    private void ToggleInventory()
+    public void ToggleInventory()
     {
         inventoryController.ToggleInventory();
     }
@@ -77,5 +83,11 @@ public class CharacterController : MonoBehaviour, IDamageable
     public void TakeDamage(float damageTaken)
     {
         Debug.Log($"Player dañado con {damageTaken}");
+    }
+
+    private void LateUpdate()
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 }

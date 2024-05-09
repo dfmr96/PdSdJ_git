@@ -93,11 +93,11 @@ namespace Inventory.Controllers
             ActionsController.OnActionCalled -= CloseActionPanel;
         }
 
-        public void EnablePickUpPrompt(GroundItem groundItem)
+        public void EnablePickUpPrompt(GroundItem groundItem, CharacterController player)
         {
             inventoryPanel.SetActive(true);
             pickUpPromptPanel.SetActive(true);
-            PickUpController.BuildPrompt(groundItem);
+            PickUpController.BuildPrompt(groundItem, player);
         }
 
         public void SetState(InventoryStates state)
